@@ -1,7 +1,7 @@
-package com.machado.model.line;
+package com.machado.model.field.line;
 
-import com.machado.model.Field;
-import com.machado.model.Point;
+import com.machado.model.field.Field;
+import com.machado.model.field.Point;
 import processing.core.PApplet;
 
 public class LinePoint extends Point {

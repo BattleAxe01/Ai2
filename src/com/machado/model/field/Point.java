@@ -1,6 +1,6 @@
-package com.machado.model;
+package com.machado.model.field;
 
-import com.machado.model.line.Line;
+import com.machado.model.field.line.Line;
 import processing.core.PApplet;
 import processing.core.PConstants;
 

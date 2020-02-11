@@ -1,6 +1,6 @@
 package com.machado.view;
 
-import com.machado.model.Field;
+import com.machado.model.field.Field;
 import processing.core.PApplet;
 
 public class MainLoop extends PApplet {

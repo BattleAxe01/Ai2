@@ -1,4 +1,4 @@
-package com.machado.model;
+package com.machado.model.field;
 
 public enum State {
     ON,

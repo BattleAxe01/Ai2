@@ -1,7 +1,7 @@
-package com.machado.model;
+package com.machado.model.field;
 
-import com.machado.model.line.Line;
-import com.machado.model.line.LinePoint;
+import com.machado.model.field.line.Line;
+import com.machado.model.field.line.LinePoint;
 import processing.core.PApplet;
 
 import java.util.Collection;
