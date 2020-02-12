@@ -31,6 +31,7 @@ public class Field {
         view.pushMatrix();
         view.translate(x, y);
 
+        view.strokeWeight(2);
         drawMe();
         drawPoints();
         line.draw();
@@ -49,13 +50,16 @@ public class Field {
     }
 
     private void updatePointState() {
-        points.forEach(p -> p.setState(line));
+        points.forEach(p -> p.setColor(line));
     }
 
     public void mousePressed(float mX, float mY) {
         final float mx = mX - x;
         final float my = mY - y;
 
+        for (Point p : points) {
+            if (p.inside(mx, my)) p.mousePressed();
+        }
         line.mousePressed(mx, my);
     }
 
@@ -83,5 +87,9 @@ public class Field {
 
     public boolean isClicked() {
         return line.isClicked();
+    }
+
+    public Collection<Point> getPoints() {
+        return points;
     }
 }

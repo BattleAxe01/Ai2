@@ -18,11 +18,12 @@ public class Line {
     }
 
     public void draw() {
+        view.stroke(0);
+        view.strokeWeight(3);
         view.fill(0, 50);
         view.line(p1.x, p1.y, p2.x, p2.y);
 
         view.fill(0);
-
         p1.draw();
         p2.draw();
     }

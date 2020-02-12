@@ -1,11 +1,15 @@
 package com.machado.view;
 
+import com.machado.controller.Brain;
 import com.machado.model.field.Field;
 import processing.core.PApplet;
 
 public class MainLoop extends PApplet {
 
+    private static final int fps = 5;
+
     Field field;
+    Brain brain;
 
     @Override
     public void settings() {
@@ -15,7 +19,10 @@ public class MainLoop extends PApplet {
 
     @Override
     public void setup() {
+        frameRate(fps);
+
         field = new Field(this);
+        brain = new Brain(this);
     }
 
     @Override
@@ -23,6 +30,9 @@ public class MainLoop extends PApplet {
         background(255);
 
         field.draw();
+        brain.draw();
+
+        brain.train(field.getPoints());
     }
 
     @Override

@@ -24,6 +24,7 @@ public class LinePoint extends Point {
         view.circle(x, y, radius);
     }
 
+    @Override
     public void mousePressed() {
         radius *= 2;
         clicked = true;

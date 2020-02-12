@@ -1,8 +1,12 @@
 package com.machado.model.field;
 
+import com.machado.controller.Brain;
+import com.machado.model.Neuron;
 import com.machado.model.field.line.Line;
 import processing.core.PApplet;
 import processing.core.PConstants;
+
+import java.awt.*;
 
 public class Point {
 
@@ -10,7 +14,8 @@ public class Point {
 
     protected float x;
     protected float y;
-    State state;
+    private State color;
+    private double iaGuess = 0.5;
 
     protected PApplet view;
 
@@ -22,8 +27,8 @@ public class Point {
     }
 
     protected void drawConfig() {
-        if (state == State.UP) view.fill(255, 0, 0);
-        else if (state == State.DOWN) view.fill(0, 255, 0);
+        if (color == State.UP) view.fill(255, 0, 0);
+        else if (color == State.DOWN) view.fill(0, 255, 0);
         else view.fill(0);
 
         view.ellipseMode(PConstants.RADIUS);
@@ -31,16 +36,37 @@ public class Point {
 
     public void draw() {
         drawConfig();
+        if (Brain.drawIaGuess) {
+            if (color == State.UP) view.fill(view.lerpColor(Color.green.getRGB(), Color.red.getRGB(), (float) iaGuess));
+            else if (color == State.DOWN)
+                view.fill(view.lerpColor(Color.red.getRGB(), Color.green.getRGB(), (float) iaGuess));
+        }
         view.circle(x, y, radius);
+    }
+
+    public void setColor(Line line) {
+        if (line.getA() * x + line.getB() < y) color = State.UP;
+        else if (line.getA() * x + line.getB() > y) color = State.DOWN;
+        else color = State.ON;
+    }
+
+    public State getColor() {
+        return color;
+    }
+
+    public void mousePressed() {
+        Neuron.displayData = getData();
     }
 
     public boolean inside(float cX, float cY) {
         return Math.sqrt(Math.pow(cX - x, 2) + Math.pow(cY - y, 2)) <= radius;
     }
 
-    public void setState(Line line) {
-        if (line.getA() * x + line.getB() < y) state = State.UP;
-        else if (line.getA() * x + line.getB() > y) state = State.DOWN;
-        else state = State.ON;
+    public void setIaGuess(double iaGuess) {
+        this.iaGuess = iaGuess;
+    }
+
+    public double[] getData() {
+        return new double[]{(double) x, (double) y};
     }
 }
