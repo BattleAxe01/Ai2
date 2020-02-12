@@ -9,6 +9,6 @@ public class Main {
 //        System.out.println("Hello World");
 
         MainLoop ml = new MainLoop();
-        PApplet.runSketch(new String[]{"CardGame"}, ml);
+        PApplet.runSketch(new String[]{"IA"}, ml);
     }
 }
