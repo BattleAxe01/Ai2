@@ -39,6 +39,7 @@ public class Neuron {
         final int height = view.height - 20 - 50;
         final int radius = 100;
         final int y = 100;
+        final int txtBorder = 5;
 
         view.translate(Field.width + 20, 10 + 50);
 
@@ -54,17 +55,11 @@ public class Neuron {
         String w1 = String.format("%.3f", weight[1]);
         String guess = String.format("%.3f", guess(displayData));
 
-        float txtWidth = Math.max(view.textWidth(data0), view.textWidth(data1));
-        txtWidth = Math.max(txtWidth, view.textWidth(bs));
-        txtWidth = Math.max(txtWidth, view.textWidth(w0));
-        txtWidth = Math.max(txtWidth, view.textWidth(w1));
-        txtWidth = Math.max(txtWidth, view.textWidth(guess)) + 3;
-
         view.stroke(0);
         view.strokeWeight(2);
-        view.line(-width / 2F + txtWidth, -radius / 2F, 0, -radius / 2F);
-        view.line(-width / 2F + txtWidth, radius / 2F, 0, radius / 2F);
-        view.line(radius, 0, width / 2F - txtWidth, 0);
+        view.line(-width / 2F + view.textWidth(data0) + txtBorder, -radius / 2F, 0, -radius / 2F);
+        view.line(-width / 2F + view.textWidth(data1) + txtBorder, radius / 2F, 0, radius / 2F);
+        view.line(radius, 0, width / 2F - view.textWidth(guess) - txtBorder, 0);
 
         view.textAlign(PConstants.LEFT, PConstants.CENTER);
         view.textSize(22);
@@ -80,8 +75,8 @@ public class Neuron {
         view.text(w1, (-width / 2F) / 2, radius / 2F);
 
         view.fill(0);
-        view.textAlign(PConstants.CENTER, PConstants.CENTER);
-        view.text(guess, width / 2F - txtWidth / 2, 0);
+        view.textAlign(PConstants.RIGHT, PConstants.CENTER);
+        view.text(guess, width / 2F, 0);
 
         view.fill(255);
         view.strokeWeight(2);

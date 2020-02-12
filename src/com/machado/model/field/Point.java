@@ -22,8 +22,8 @@ public class Point {
     public Point(PApplet view) {
         this.view = view;
 
-        this.x = (float) (Math.random() * Field.width);
-        this.y = (float) (Math.random() * Field.height);
+        this.x = (float) (radius + Math.random() * (Field.width - radius));
+        this.y = (float) (radius + Math.random() * (Field.height - radius));
     }
 
     protected void drawConfig() {
