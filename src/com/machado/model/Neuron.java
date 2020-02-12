@@ -6,29 +6,29 @@ import processing.core.PConstants;
 
 public class Neuron {
 
-    private final int size;
+    private final int inputSize;
     public double bias;
     public double[] weight;
 
     public static double[] displayData = new double[]{0.5, 0.5};
 
-    public Neuron(int size) {
+    public Neuron(int inputSize) {
         this.bias = Math.random();
-        this.size = size;
+        this.inputSize = inputSize;
 
-        weight = new double[size];
-        for (int i = 0; i < size; i++) weight[i] = Math.random();
+        weight = new double[inputSize];
+        for (int i = 0; i < inputSize; i++) weight[i] = Math.random();
     }
 
     public double guess(double[] input) {
         double sum = bias;
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < inputSize; i++) {
             sum += weight[i] * input[i];
         }
-        return sig(sum);
+        return sigmoid(sum);
     }
 
-    private double sig(double d) {
+    private double sigmoid(double d) {
         return 1 / (1 + Math.exp(-d));
     }
 
@@ -36,7 +36,6 @@ public class Neuron {
         view.pushMatrix();
 
         final int width = view.width - Field.width - Field.x * 3;
-        final int height = view.height - 20 - 50;
         final int radius = 100;
         final int y = 100;
         final int txtBorder = 5;

@@ -11,20 +11,18 @@ import java.util.Collection;
 
 public class Brain {
 
-    private static final int size = 1;
+    private static final int neuronAmount = 1;
     private static final int inputSize = 2;
     public static final boolean drawIaGuess = true;
     private static final double learningFactor = 2;
 
     private double cost;
-
     private final PApplet view;
-
     Collection<Neuron> neurons = new ArrayList<>();
 
     public Brain(PApplet view) {
         this.view = view;
-        for (int i = 0; i < size; i++) neurons.add(new Neuron(inputSize));
+        for (int i = 0; i < neuronAmount; i++) neurons.add(new Neuron(inputSize));
     }
 
     public void train(Collection<Point> points) {
