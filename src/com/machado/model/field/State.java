@@ -2,8 +2,8 @@ package com.machado.model.field;
 
 public enum State {
     ON(0.5),
-    UP(1),
-    DOWN(0);
+    UP(0),
+    DOWN(1);
 
     public double value;
 

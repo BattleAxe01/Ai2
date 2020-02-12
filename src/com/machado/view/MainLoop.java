@@ -6,7 +6,7 @@ import processing.core.PApplet;
 
 public class MainLoop extends PApplet {
 
-    private static final int fps = 5;
+    private static final int fps = 60;
 
     Field field;
     Brain brain;

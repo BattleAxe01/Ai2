@@ -1,8 +1,10 @@
 package com.machado.controller;
 
 import com.machado.model.Neuron;
+import com.machado.model.field.Field;
 import com.machado.model.field.Point;
 import processing.core.PApplet;
+import processing.core.PConstants;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -12,7 +14,9 @@ public class Brain {
     private static final int size = 1;
     private static final int inputSize = 2;
     public static final boolean drawIaGuess = true;
+    private static final double learningFactor = 2;
 
+    private double cost;
 
     private final PApplet view;
 
@@ -24,19 +28,30 @@ public class Brain {
     }
 
     public void train(Collection<Point> points) {
-        double cost = 0;
+        cost = 0;
         for (Point p : points) {
+            double[] data = p.getData();
             for (Neuron n : neurons) {
-                double guess = n.guess(p.getData());
-                double error = guess - p.getColor().value;
+                double guess = n.guess(data);
+                double error = p.getColor().value - guess;
                 cost += Math.pow(error, 2);
+
+                for (int i = 0; i < inputSize; i++) {
+                    n.weight[i] += error * data[i] * learningFactor;
+                }
+                n.bias += error * learningFactor;
 
                 p.setIaGuess(guess);
             }
         }
+//        System.out.println(cost);
     }
 
     public void draw() {
+        view.textSize(22);
+        view.textAlign(PConstants.CENTER, PConstants.TOP);
+        String c = String.format("Erro Total: %.5f", cost);
+        view.text(c, Field.width + 2 * Field.x + (view.width - (Field.width + 2 * Field.x)) / 2F, Field.y);
         for (Neuron n : neurons) {
             n.draw(view);
         }

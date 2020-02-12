@@ -13,7 +13,7 @@ public class Field {
     public static final int y = 10;
     public static final int width = 800;
     public static final int height = 800;
-    private static final int amoPoint = 100;
+    private static final int amoPoint = 50;
 
     private PApplet view;
     private Collection<Point> points = new LinkedList<>();

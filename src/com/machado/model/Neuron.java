@@ -7,10 +7,10 @@ import processing.core.PConstants;
 public class Neuron {
 
     private final int size;
-    private double bias;
-    private double[] weight;
+    public double bias;
+    public double[] weight;
 
-    public static double[] displayData = new double[]{Field.height / 2F, Field.width / 2F};
+    public static double[] displayData = new double[]{0.5, 0.5};
 
     public Neuron(int size) {
         this.bias = Math.random();
@@ -36,11 +36,11 @@ public class Neuron {
         view.pushMatrix();
 
         final int width = view.width - Field.width - Field.x * 3;
-        final int height = view.height - 20;
+        final int height = view.height - 20 - 50;
         final int radius = 100;
         final int y = 100;
 
-        view.translate(Field.width + 20, 10);
+        view.translate(Field.width + 20, 10 + 50);
 
         view.fill(255);
         view.noStroke();
@@ -49,10 +49,10 @@ public class Neuron {
 
         String data0 = String.format("%.2f", displayData[0]);
         String data1 = String.format("%.2f", displayData[1]);
-        String bs = String.format("%.2f", bias);
-        String w0 = String.format("%.2f", weight[0]);
-        String w1 = String.format("%.2f", weight[1]);
-        String guess = String.format("%.2f", guess(displayData));
+        String bs = String.format("%.3f", bias);
+        String w0 = String.format("%.3f", weight[0]);
+        String w1 = String.format("%.3f", weight[1]);
+        String guess = String.format("%.3f", guess(displayData));
 
         float txtWidth = Math.max(view.textWidth(data0), view.textWidth(data1));
         txtWidth = Math.max(txtWidth, view.textWidth(bs));

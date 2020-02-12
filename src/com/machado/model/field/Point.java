@@ -67,6 +67,6 @@ public class Point {
     }
 
     public double[] getData() {
-        return new double[]{(double) x, (double) y};
+        return new double[]{PApplet.map(x, 0, 800, 0, 1), PApplet.map(y, 0, 800, 0, 1)};
     }
 }
